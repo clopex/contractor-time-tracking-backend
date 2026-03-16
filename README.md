@@ -59,3 +59,4 @@ supabase db reset
 - Client apps should use the Supabase `publishable key`.
 - Server-side integrations should use the Supabase `secret key`.
 - Edge Functions remain compatible with Supabase hosted defaults by falling back to legacy function env vars when needed.
+- AI provider for the current setup is `Gemini`, exposed to functions through `GEMINI_API_KEY`.
