@@ -49,6 +49,8 @@ supabase db reset
 - `timesheet-approve`
 - `timesheet-reject`
 - `reports-summary`
+- `billing-checkout`
+- `billing-portal`
 - `stripe-webhook`
 - `ai-assistant`
 

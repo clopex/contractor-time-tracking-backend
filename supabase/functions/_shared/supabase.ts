@@ -8,6 +8,10 @@ function getEnv(name: string) {
   return value;
 }
 
+function getEnvWithFallback(primary: string, fallback: string) {
+  return Deno.env.get(primary) ?? getEnv(fallback);
+}
+
 export function createUserClient(request: Request) {
   const authHeader = request.headers.get("Authorization");
   if (!authHeader) {
@@ -16,7 +20,7 @@ export function createUserClient(request: Request) {
 
   return createClient(
     getEnv("SUPABASE_URL"),
-    getEnv("SUPABASE_ANON_KEY"),
+    getEnvWithFallback("SUPABASE_PUBLISHABLE_KEY", "SUPABASE_ANON_KEY"),
     {
       global: {
         headers: {
@@ -30,7 +34,7 @@ export function createUserClient(request: Request) {
 export function createServiceClient() {
   return createClient(
     getEnv("SUPABASE_URL"),
-    getEnv("SUPABASE_SERVICE_ROLE_KEY"),
+    getEnvWithFallback("SUPABASE_SECRET_KEY", "SUPABASE_SERVICE_ROLE_KEY"),
   );
 }
 
